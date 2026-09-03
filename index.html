@@ -8,73 +8,27 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
-<section class="card">
-<header class="hero">
-<div class="eyebrow">АРКАДА • BROWSER ARENA</div>
-<h1>Крестики-нолики</h1>
-<p class="subtitle">Полноценная дуэль против ИИ или друга</p>
-</header>
-<div class="mode-switch" role="group" aria-label="Режим игры">
-<button class="mode active" data-mode="ai" type="button">🤖 Против ИИ</button>
-<button class="mode" data-mode="local" type="button">👥 Два игрока</button>
-</div>
+<main class="app"><section class="card">
+<header class="hero"><div class="eyebrow">АРКАДА • BROWSER ARENA</div><h1>Крестики-нолики</h1><p class="subtitle">Дуэль против ИИ или друга</p></header>
+<div class="mode-switch" role="group" aria-label="Режим игры"><button class="mode active" data-mode="ai" type="button">🤖 Против ИИ</button><button class="mode" data-mode="local" type="button">👥 Два игрока</button></div>
 <div class="settings-grid">
 <div class="setting" id="difficultyWrap"><label for="difficulty">Сложность</label><select id="difficulty"><option value="easy">Лёгкая</option><option value="medium" selected>Средняя</option><option value="hard">Сложная</option></select></div>
 <div class="setting" id="markWrap"><label for="playerMark">Ваш знак</label><select id="playerMark"><option value="X" selected>✕ Крестики</option><option value="O">○ Нолики</option></select></div>
 <div class="setting"><label for="matchLength">Матч</label><select id="matchLength"><option value="1">1 победа</option><option value="3" selected>До 3 побед</option><option value="5">До 5 побед</option></select></div>
 <div class="setting"><label for="starter">Первый ход</label><select id="starter"><option value="X" selected>Крестики</option><option value="random">Случайно</option></select></div>
+<div class="setting"><label for="timeLimit">Таймер</label><select id="timeLimit"><option value="0" selected>Без таймера</option><option value="10">10 секунд</option><option value="20">20 секунд</option><option value="30">30 секунд</option></select></div>
 <button class="icon-button" id="soundToggle" type="button" aria-label="Переключить звук">🔊</button>
 </div>
-<div class="scoreboard">
-<div class="score-card player-x"><span id="scoreXLabel">Вы</span><b id="scoreX">0</b></div>
-<div class="turn" id="turn">Ваш ход</div>
-<div class="score-card player-o"><span id="scoreOLabel">ИИ</span><b id="scoreO">0</b></div>
-</div>
-<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
-<div class="match-info"><span id="matchInfo">Матч до 3 побед</span><span id="roundInfo">Раунд 1</span></div>
-<div class="stats">
-<div><span>Игр</span><b id="gamesPlayed">0</b></div>
-<div><span>Побед</span><b id="gamesWon">0</b></div>
-<div><span>Поражений</span><b id="gamesLost">0</b></div>
-<div><span>Ничьих</span><b id="gamesDraw">0</b></div>
-<div><span>Серия</span><b id="winStreak">0</b></div>
-</div>
-<div class="achievements" aria-label="Достижения">
-<div class="achievement" id="achievementFirst"><span>◆</span><div><b>Первая победа</b><small>Выиграйте одну игру</small></div></div>
-<div class="achievement" id="achievementStreak"><span>🔥</span><div><b>Разогрелся</b><small>Серия из 3 побед</small></div></div>
-<div class="achievement" id="achievementPerfect"><span>★</span><div><b>Без шансов</b><small>Победите на сложном ИИ</small></div></div>
-</div>
-<div class="board-toolbar">
-<span class="board-tip">1–9 — быстрый ход</span>
-<div class="tool-actions">
-<button class="tool-button" id="hintBtn" type="button">💡 Подсказка</button>
-<button class="tool-button" id="surrenderBtn" type="button">🏳 Сдаться</button>
-</div>
-</div>
+<div class="scoreboard"><div class="score-card player-x"><span id="scoreXLabel">Вы</span><b id="scoreX">0</b></div><div class="turn" id="turn">Ваш ход</div><div class="score-card player-o"><span id="scoreOLabel">ИИ</span><b id="scoreO">0</b></div></div>
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div><div class="match-info"><span id="matchInfo">Матч до 3 побед</span><span id="roundInfo">Раунд 1</span></div>
+<div class="timer-panel"><span>Время хода</span><b id="timerValue">—</b><div class="timer-bar"><div id="timerFill"></div></div></div>
+<div class="stats"><div><span>Игр</span><b id="gamesPlayed">0</b></div><div><span>Побед</span><b id="gamesWon">0</b></div><div><span>Поражений</span><b id="gamesLost">0</b></div><div><span>Ничьих</span><b id="gamesDraw">0</b></div><div><span>Серия</span><b id="winStreak">0</b></div></div>
+<div class="achievements" aria-label="Достижения"><div class="achievement" id="achievementFirst"><span>◆</span><div><b>Первая победа</b><small>Выиграйте одну игру</small></div></div><div class="achievement" id="achievementStreak"><span>🔥</span><div><b>Разогрелся</b><small>Серия из 3 побед</small></div></div><div class="achievement" id="achievementPerfect"><span>★</span><div><b>Без шансов</b><small>Победите на сложном ИИ</small></div></div></div>
+<div class="board-toolbar"><span class="board-tip">1–9 — ход • H — подсказка • Z — отмена</span><div class="tool-actions"><button class="tool-button" id="hintBtn" type="button">💡 Подсказка</button><button class="tool-button" id="surrenderBtn" type="button">🏳 Сдаться</button></div></div>
 <div class="board-wrap"><div class="board" id="board" aria-label="Игровое поле"></div></div>
 <div class="status" id="status" aria-live="polite">Ваш ход — выберите клетку</div>
-<div class="actions">
-<button id="restart" type="button">↻ Новый матч</button>
-<button class="secondary" id="undo" type="button">↶ Отменить</button>
-<button class="secondary" id="resetScore" type="button">Сбросить</button>
-</div>
+<div class="actions"><button id="restart" type="button">↻ Новый матч</button><button class="secondary" id="undo" type="button">↶ Отменить</button><button class="secondary" id="resetScore" type="button">Сбросить</button></div>
 <div class="hint">Esc — новый матч • Z — отменить • H — подсказка • Счёт и достижения сохраняются</div>
-</section>
-</main>
-<div class="result-modal" id="resultModal" hidden>
-<div class="modal-backdrop" data-close-result></div>
-<section class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
-<div class="result-icon" id="resultIcon">🏆</div>
-<h2 id="resultTitle">Вы победили!</h2>
-<p id="resultText">Отличная партия.</p>
-<div class="result-score" id="resultScore">1 : 0</div>
-<div class="modal-actions">
-<button id="nextRound" type="button">Следующий раунд</button>
-<button class="secondary" id="closeResult" type="button">Закрыть</button>
-</div>
-</section>
-</div>
-<script src="script.js"></script>
-</body>
-</html>
+</section></main>
+<div class="result-modal" id="resultModal" hidden><div class="modal-backdrop" data-close-result></div><section class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="result-icon" id="resultIcon">🏆</div><h2 id="resultTitle">Вы победили!</h2><p id="resultText">Отличная партия.</p><div class="result-score" id="resultScore">1 : 0</div><div class="modal-actions"><button id="nextRound" type="button">Следующий раунд</button><button class="secondary" id="closeResult" type="button">Закрыть</button></div></section></div>
+<script src="script.js"></script></body></html>
