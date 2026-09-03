@@ -45,6 +45,13 @@
 <div class="achievement" id="achievementStreak"><span>🔥</span><div><b>Разогрелся</b><small>Серия из 3 побед</small></div></div>
 <div class="achievement" id="achievementPerfect"><span>★</span><div><b>Без шансов</b><small>Победите на сложном ИИ</small></div></div>
 </div>
+<div class="board-toolbar">
+<span class="board-tip">1–9 — быстрый ход</span>
+<div class="tool-actions">
+<button class="tool-button" id="hintBtn" type="button">💡 Подсказка</button>
+<button class="tool-button" id="surrenderBtn" type="button">🏳 Сдаться</button>
+</div>
+</div>
 <div class="board-wrap"><div class="board" id="board" aria-label="Игровое поле"></div></div>
 <div class="status" id="status" aria-live="polite">Ваш ход — выберите клетку</div>
 <div class="actions">
@@ -52,7 +59,7 @@
 <button class="secondary" id="undo" type="button">↶ Отменить</button>
 <button class="secondary" id="resetScore" type="button">Сбросить</button>
 </div>
-<div class="hint">Esc — новый матч • Z — отменить ход • Счёт и достижения сохраняются</div>
+<div class="hint">Esc — новый матч • Z — отменить • H — подсказка • Счёт и достижения сохраняются</div>
 </section>
 </main>
 <div class="result-modal" id="resultModal" hidden>
