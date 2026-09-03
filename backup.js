@@ -1,0 +1,12 @@
+(()=>{
+const btn=document.createElement('button');btn.type='button';btn.className='history-button secondary';btn.textContent='💾 Экспорт / импорт';
+const actions=document.querySelector('.actions');if(!actions)return;actions.insertAdjacentElement('afterend',btn);
+const keys=['tttX','tttO','tttGames','tttWins','tttLosses','tttDraws','tttStreak','tttPerfect','tttSound','tttMode','tttHuman','tttDifficulty','tttMatchLength','tttStarter','tttTimeLimit','tttTheme','tttMotion','tttHistory'];
+function snapshot(){const data={version:1,created:new Date().toISOString(),data:{}};keys.forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data.data[k]=v});return JSON.stringify(data,null,2)}
+function restore(text){const obj=JSON.parse(text);if(!obj||obj.version!==1||!obj.data)throw new Error('bad');Object.entries(obj.data).forEach(([k,v])=>{if(keys.includes(k))localStorage.setItem(k,String(v))});location.reload()}
+btn.addEventListener('click',()=>{const modal=document.createElement('div');modal.className='backup-modal';modal.innerHTML='<div class="history-backdrop"></div><section class="history-dialog"><div class="history-head"><h2>Перенос прогресса</h2><button class="icon-button" data-x>✕</button></div><p class="backup-note">Скопируйте резервную копию на другой компьютер или браузер.</p><textarea class="backup-area" spellcheck="false"></textarea><div class="modal-actions"><button id="backupCopy">📋 Скопировать</button><label class="tool-button backup-file">📥 Импорт <input type="file" accept="application/json" hidden></label><button class="secondary" data-x>Закрыть</button></div></section>';
+document.body.appendChild(modal);const area=modal.querySelector('.backup-area');area.value=snapshot();
+modal.querySelector('#backupCopy').onclick=async()=>{try{await navigator.clipboard.writeText(area.value);modal.querySelector('#backupCopy').textContent='✅ Скопировано'}catch{area.select();document.execCommand('copy');modal.querySelector('#backupCopy').textContent='✅ Скопировано'}};
+modal.querySelector('input').onchange=e=>{const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{restore(String(r.result))}catch{area.value='Ошибка: файл не распознан'}};r.readAsText(f)};
+modal.querySelectorAll('[data-x]').forEach(x=>x.onclick=()=>modal.remove());});
+})();
