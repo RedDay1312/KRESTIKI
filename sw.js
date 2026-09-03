@@ -1,5 +1,5 @@
-const CACHE='krestiki-arena-v3';
-const ASSETS=['./','./index.html','./style.css','./extras.css','./powerups.css','./ai-personality.css','./insights.css','./script.js','./enhancements.js','./extras.js','./powerups.js','./backup.js','./ai-personality.js','./keyboard.js','./insights.js','./manifest.webmanifest'];
+const CACHE='krestiki-arena-v4';
+const ASSETS=['./','./index.html','./style.css','./extras.css','./powerups.css','./ai-personality.css','./insights.css','./extra10.css','./script.js','./enhancements.js','./extras.js','./powerups.js','./backup.js','./ai-personality.js','./keyboard.js','./insights.js','./extra10.js','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response}).catch(()=>caches.match('./index.html'))))});
