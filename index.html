@@ -55,6 +55,19 @@
 <div class="hint">Esc — новый матч • Z — отменить ход • Счёт и достижения сохраняются</div>
 </section>
 </main>
+<div class="result-modal" id="resultModal" hidden>
+<div class="modal-backdrop" data-close-result></div>
+<section class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+<div class="result-icon" id="resultIcon">🏆</div>
+<h2 id="resultTitle">Вы победили!</h2>
+<p id="resultText">Отличная партия.</p>
+<div class="result-score" id="resultScore">1 : 0</div>
+<div class="modal-actions">
+<button id="nextRound" type="button">Следующий раунд</button>
+<button class="secondary" id="closeResult" type="button">Закрыть</button>
+</div>
+</section>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
