@@ -12,21 +12,36 @@
     <header class="hero">
       <div class="eyebrow">АРКАДА • BROWSER ARENA</div>
       <h1>Крестики-нолики</h1>
-      <p class="subtitle">Быстрая дуэль против ИИ или друга</p>
+      <p class="subtitle">Соберите победную серию раньше соперника</p>
     </header>
 
     <div class="mode-switch" role="group" aria-label="Режим игры">
-      <button class="mode active" data-mode="ai">🤖 Против ИИ</button>
-      <button class="mode" data-mode="local">👥 Два игрока</button>
+      <button class="mode active" data-mode="ai" type="button">🤖 Против ИИ</button>
+      <button class="mode" data-mode="local" type="button">👥 Два игрока</button>
     </div>
 
-    <div class="settings-row">
-      <div class="difficulty" id="difficultyWrap">
+    <div class="settings-grid">
+      <div class="setting" id="difficultyWrap">
         <label for="difficulty">Сложность</label>
         <select id="difficulty">
           <option value="easy">Лёгкая</option>
           <option value="medium" selected>Средняя</option>
           <option value="hard">Сложная</option>
+        </select>
+      </div>
+      <div class="setting">
+        <label for="matchLength">Матч</label>
+        <select id="matchLength">
+          <option value="1">1 победа</option>
+          <option value="3" selected>До 3 побед</option>
+          <option value="5">До 5 побед</option>
+        </select>
+      </div>
+      <div class="setting">
+        <label for="starter">Первый ход</label>
+        <select id="starter">
+          <option value="X" selected>Крестики</option>
+          <option value="random">Случайно</option>
         </select>
       </div>
       <button class="icon-button" id="soundToggle" type="button" aria-label="Переключить звук">🔊</button>
@@ -37,6 +52,9 @@
       <div class="turn" id="turn">Ваш ход</div>
       <div class="score-card player-o"><span id="scoreOLabel">ИИ</span><b id="scoreO">0</b></div>
     </div>
+
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="match-info"><span id="matchInfo">Матч до 3 побед</span><span id="roundInfo">Раунд 1</span></div>
 
     <div class="stats">
       <div><span>Игр</span><b id="gamesPlayed">0</b></div>
@@ -50,10 +68,11 @@
     <div class="status" id="status" aria-live="polite">Ваш ход — выберите клетку</div>
 
     <div class="actions">
-      <button id="restart" type="button">↻ Новая игра</button>
-      <button class="secondary" id="resetScore" type="button">Сбросить статистику</button>
+      <button id="restart" type="button">↻ Новая партия</button>
+      <button class="secondary" id="undo" type="button">↶ Отменить</button>
+      <button class="secondary" id="resetScore" type="button">Сбросить</button>
     </div>
-    <div class="hint">Крестики ходят первыми • Счёт сохраняется в браузере</div>
+    <div class="hint">Esc — новая партия • Z — отменить ход • Счёт сохраняется в браузере</div>
   </section>
 </main>
 <script src="script.js"></script>
