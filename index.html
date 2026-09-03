@@ -3,42 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Крестики-нолики</title>
+<title>Крестики-нолики • Arena</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="app">
   <section class="card">
-    <div class="eyebrow">АРКАДА • БРАУЗЕРНАЯ ИГРА</div>
-    <h1>Крестики-нолики</h1>
-    <p class="subtitle">Сразитесь с искусственным интеллектом на поле 3 × 3</p>
+    <header class="hero">
+      <div class="eyebrow">АРКАДА • BROWSER ARENA</div>
+      <h1>Крестики-нолики</h1>
+      <p class="subtitle">Быстрая дуэль против ИИ или друга</p>
+    </header>
 
     <div class="mode-switch" role="group" aria-label="Режим игры">
-      <button class="mode active" data-mode="ai">Против ИИ</button>
-      <button class="mode" data-mode="local">Два игрока</button>
+      <button class="mode active" data-mode="ai">🤖 Против ИИ</button>
+      <button class="mode" data-mode="local">👥 Два игрока</button>
     </div>
 
-    <div class="difficulty" id="difficultyWrap">
-      <label for="difficulty">Сложность ИИ</label>
-      <select id="difficulty">
-        <option value="easy">Лёгкая</option>
-        <option value="medium" selected>Средняя</option>
-        <option value="hard">Сложная</option>
-      </select>
+    <div class="settings-row">
+      <div class="difficulty" id="difficultyWrap">
+        <label for="difficulty">Сложность</label>
+        <select id="difficulty">
+          <option value="easy">Лёгкая</option>
+          <option value="medium" selected>Средняя</option>
+          <option value="hard">Сложная</option>
+        </select>
+      </div>
+      <button class="icon-button" id="soundToggle" type="button" aria-label="Переключить звук">🔊</button>
     </div>
 
     <div class="scoreboard">
-      <div><span id="scoreXLabel">Вы</span><b id="scoreX">0</b></div>
+      <div class="score-card player-x"><span id="scoreXLabel">Вы</span><b id="scoreX">0</b></div>
       <div class="turn" id="turn">Ваш ход</div>
-      <div><span id="scoreOLabel">ИИ</span><b id="scoreO">0</b></div>
+      <div class="score-card player-o"><span id="scoreOLabel">ИИ</span><b id="scoreO">0</b></div>
     </div>
 
-    <div class="board" id="board" aria-label="Игровое поле"></div>
-    <div class="status" id="status">Ваш ход — выберите клетку</div>
-    <div class="actions">
-      <button id="restart">Новая игра</button>
-      <button class="secondary" id="resetScore">Сбросить счёт</button>
+    <div class="stats">
+      <div><span>Игр</span><b id="gamesPlayed">0</b></div>
+      <div><span>Побед</span><b id="gamesWon">0</b></div>
+      <div><span>Серия</span><b id="winStreak">0</b></div>
     </div>
+
+    <div class="board-wrap">
+      <div class="board" id="board" aria-label="Игровое поле"></div>
+    </div>
+    <div class="status" id="status" aria-live="polite">Ваш ход — выберите клетку</div>
+
+    <div class="actions">
+      <button id="restart" type="button">↻ Новая игра</button>
+      <button class="secondary" id="resetScore" type="button">Сбросить статистику</button>
+    </div>
+    <div class="hint">Крестики ходят первыми • Счёт сохраняется в браузере</div>
   </section>
 </main>
 <script src="script.js"></script>
