@@ -1,0 +1,11 @@
+{
+  "name":"Крестики-нолики • Arena",
+  "short_name":"Крестики",
+  "description":"Браузерные крестики-нолики против ИИ или друга.",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#080a10",
+  "theme_color":"#111522",
+  "lang":"ru",
+  "icons":[]
+}
